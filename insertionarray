@@ -1,0 +1,31 @@
+#include<stdio.h>
+int main() 
+{
+
+int element,index,num;
+printf("Enter a number of elements\n");
+scanf("%d",&num);
+int arr[10];
+for(int i=0;i<num;i++){
+    scanf("%d",&arr[i]);
+}
+
+printf("Enter a value of insert\n");
+scanf("%d",&element);
+
+printf("Enter a index where can insert\n");
+scanf("%d",&index);
+
+for(int i=num;i>index;i--){
+    arr[i] = arr[i-1];
+   
+    
+}
+arr[index] = element; 
+num++;
+
+for(int i=0;i<num;i++){
+    printf("Elements : %d\n",arr[i]);
+}
+   return 0;
+}
