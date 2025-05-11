@@ -1,0 +1,168 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node{
+    int data;
+    struct Node * next;
+};
+
+struct Node* insertatfirst(struct Node* head,int data);
+struct Node* insertatmiddle(struct Node * head,int index,int data);
+struct Node* insertatend(struct Node* head,int data);
+struct Node * deleteatfirst(struct Node* head);
+struct Node * deleteatmiddle(struct Node* head,int index);
+struct Node* deleteatend(struct Node* head);
+void traversal(struct Node* ptr);
+
+int main(){
+    struct Node *head = NULL;
+
+    while(1){
+        int choice,data;
+        printf("\n 1.insert at first\n 2. insertatmiddle \n 3. insertatend \n 4.deleteatfirst \n 5. deleteatmiddle \n 6. deleteatend \n 7. traval or display \n 8.exit\n ");
+        printf("Enter your choice: ");
+        scanf("%d",&choice);
+        switch(choice){
+            int val,index;
+            case 1:
+            printf("Enter a val for insert at first\n");
+            scanf("%d",&val);
+           head = insertatfirst(head,val);
+           traversal(head);
+            break;
+            case 2:
+            printf("Enter a val for insert at middlw\n");
+            scanf("%d",&val);
+            printf("Enter a index\n");
+            scanf("%d",&index);
+            head = insertatmiddle(head,index,val);
+            traversal(head);
+            break;
+            case 3:
+
+            printf("Enter a val for insert at end\n");
+            scanf("%d",&val);
+            head = insertatend(head,val);
+            traversal(head);
+            break;
+            case 4:
+
+            head = deleteatfirst(head);
+            printf("After a delete at first\n");
+            traversal(head);
+            break;
+
+            case 5:
+            printf("Enter a index");
+            scanf("%d",&index);
+
+            head = deleteatmiddle(head,index);
+            printf("After a delete at index\n ");
+            traversal(head);
+            break;
+
+            case 6:
+
+            head = deleteatend(head);
+            printf("After delete at end\n");
+            traversal(head);
+            break;
+
+            case 7:
+
+            traversal(head);
+            break;
+            default:
+            printf("invalid \n");
+        }
+        
+    }
+    return 0;
+}
+
+void traversal(struct Node* ptr){
+    while(ptr!=NULL){
+        printf("%d ",ptr->data);
+        ptr = ptr->next;
+
+    }
+}
+
+struct Node* insertatfirst(struct Node* head,int data){
+    struct Node * ptr;
+    ptr = (struct Node *)malloc(sizeof(struct Node));
+    ptr->data = data;
+    ptr->next = head;
+
+    return ptr;
+
+}
+
+struct Node* insertatmiddle(struct Node * head,int index,int data){
+    struct Node * p = head;
+    struct Node* ptr;
+    ptr = (struct Node *)malloc(sizeof(struct Node));
+    int i=0;
+    while(i!=index-1){
+        p=p->next;
+        i++;
+    }
+    ptr->data = data;
+    ptr->next = p->next;
+    p->next=ptr;
+
+    return head;
+
+
+}
+
+struct Node* insertatend(struct Node* head,int data){
+    struct Node*ptr;
+    ptr = (struct Node *)malloc(sizeof(struct Node));
+    struct Node* p = head;
+    while(p->next!=NULL){
+        p=p->next;
+    }
+   ptr->data =data;
+    p->next = ptr;
+    ptr->next = NULL;
+
+    return head;
+}
+
+struct Node * deleteatfirst(struct Node* head){
+    struct Node* p = head;
+    head = head->next;
+    free(p);
+
+    return head;
+}
+
+struct Node * deleteatmiddle(struct Node* head,int index){
+    struct Node* p = head;
+    struct Node* q = head->next;
+    int i=0;
+    while(i!=index-1){
+        p=p->next;
+        q = q->next;
+        i++;
+
+    }
+    p->next=q->next;
+    free(q);
+
+    return head;
+}
+
+struct Node* deleteatend(struct Node* head){
+
+    struct Node* p = head;
+    struct Node* q = head->next;
+    while(q->next!=NULL){
+        p=p->next;
+        q=q->next;
+    }
+    p->next = NULL;
+    free(q);
+    return head;
+}
