@@ -1,0 +1,25 @@
+#include<stdio.h>
+
+int main(){
+    int index,element,num;
+    int arr[10];
+    printf("Enter a number of size of array");
+    scanf("%d",&num);
+
+    printf("Enter a values \n");
+    for(int i=0;i<num;i++){
+        scanf("%d",&arr[i]);
+    }
+    printf("Enter a index for delete");
+    scanf("%d",&index);
+
+    for(int i=index;i<num-1;i++){
+        arr[i] = arr[i+1];
+    }
+    num--;
+
+    printf("Remaining elements are :\n");
+    for(int i=0;i<num;i++){
+        printf("%d ",arr[i]);
+    }
+}
