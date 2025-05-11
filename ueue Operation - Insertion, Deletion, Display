@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int queue[100], front = 0, rear = -1, n, choice, val, i;
+    printf("Enter queue size: ");
+    scanf("%d", &n);
+    while (1) {
+        printf("1.Insert 2.Delete 3.Display 4.Exit\n");
+        scanf("%d", &choice);
+        if (choice == 1) {
+            if (rear == n - 1) printf("Overflow\n");
+            else {
+                printf("Enter value: ");
+                scanf("%d", &val);
+                queue[++rear] = val;
+            }
+        } else if (choice == 2) {
+            if (front > rear) printf("Underflow\n");
+            else front++;
+        } else if (choice == 3) {
+            for (i = front; i <= rear; i++) printf("%d ", queue[i]);
+            printf("\n");
+        } else break;
+    }
+    return 0;
+}
