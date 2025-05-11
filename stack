@@ -1,0 +1,63 @@
+#include<stdio.h>
+
+#define max_size 5
+int stack[max_size];
+int top = -1;
+
+void display();
+int push(int val);
+void pop();
+int main(){
+    int choice;
+    int val;
+    while(1){ 
+    printf("\nEnter \n 1.push\n 2.pop \n 3.display \n 4. exit\n");
+    scanf("%d",&choice);
+    switch(choice){
+        case 1:
+        printf("Enter a val for push\n");
+        scanf("%d",&val);
+        push(val);
+        break;
+        case 2:
+        pop();
+        break;
+        case 3:
+        display();
+        break;
+        default:
+        printf("exiting..\n");
+    }
+    }
+
+
+}
+int push(int val){
+    if(top==max_size-1){
+        printf("stack is empty!");
+    }else{
+        top++;
+        stack[top] = val;
+        printf(" pushed value is %d\n",val);
+    }
+    return val;
+}
+
+void pop(){
+    if(top==-1){
+        printf("Stack is underflow and exit!\n");
+
+    }else{
+        int val = stack[top];
+        top = top-1;
+       
+        printf("poped value is %d\n",val);
+    }
+   
+}
+
+void display(){
+    for(int i=top;i>=0;i--){
+        printf("%d ",stack[i]);
+    }
+}
